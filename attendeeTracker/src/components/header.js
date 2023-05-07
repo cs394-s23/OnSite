@@ -1,16 +1,17 @@
 import React from "react";
 import logo from '../assets/pics/poatek-logo-full-color.png';
+import '../assets/fonts/Mont-Regular.otf';
 import './styles.css';
 
 const Header = () => {
     return (
         <div>
              <div className='header'> 
-                <img className='logo' alt='logo' src={logo}/>
+                <h1><img className='logo' alt='logo' src={logo}/></h1>
                 <div className='navItems'>
-                    <p>Where Is Everyone?</p>
-                    <p>My Profile</p>
-                    <p>Log Out</p>
+                    <a>Where Is Everyone?</a>
+                    <a>My Profile</a>
+                    <a>Log Out</a>
                 </div>
 
             </div>

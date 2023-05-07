@@ -1,9 +1,21 @@
 body * {
     box-sizing: border-box;
 }
+
+@font-face {
+    font-family: "Mont-Regular";
+    src: local("Mont-Regular"),
+      url('../assets/fonts/Mont-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Mont Black";
+    src: local("Mont-Black"),
+      url('../assets/fonts/Mont-Black.otf') format('opentype');
+}
   
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Mont-Regular", Arial, Tahoma, sans-serif;
     margin: 0;
     background-color: white;
 }
@@ -12,7 +24,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: start;
-    background: linear-gradient(101.57deg, #57BE92 27.07%, rgba(89, 195, 85, 0.9) 60.44%);
+    background: linear-gradient(101.57deg, #57BE93 27.07%, rgba(89, 195, 85, 0.9) 60.44%);
     background-blend-mode: darken;
     height: 285px;
     padding-top: 50px;
@@ -21,31 +33,44 @@ body {
     padding-right: 130px;
 }
 
-.users {
-    display: inline-block;
+.whereIsEveryoneText {
+    text-transform: uppercase;
+    color: white;
+    font-family: "Mont Black";
+    font-size: 65px;
+    margin-top: 0px;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    text-align: center;
-    box-shadow: inset 1px 1px 22px rgba(0, 0, 0, .2);
-    margin: 0 10px;
-    line-height: 100px;
     background-color: lightgray;
-  }
-
-.rows {
-    display:flex;
-    flex-direction: row;    
 }
 
-.userDisplay {
-    display:flexbox;
-    width: 100%;
-    padding-left: 25%;
-    padding-top: 10%;
-    padding-bottom: 10%;
+.nameText {
+    color: #004260;
+    font-weight: normal;
+    font-size: 14px;
 }
 
 .positionText {
-    color: green;
+    color: #48B96F;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.userRow {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;   
+    margin-bottom: 40px;
+}
+
+.userDisplay {
+    width: 100%;
+    padding: 60px 15%;
 }
