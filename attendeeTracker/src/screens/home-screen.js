@@ -34,19 +34,23 @@ const HomeScreen = () => {
             {/* Hero Display */}
             <div className='heroDisplay'> 
                 <h2 className='whereIsEveryoneText'>Where is everyone?</h2>
-                <div> 
-                    <select className='locationDropdown' name="location" id="location">
-                        <option value="Select location" disabled>Select location</option>
-                        <option value="Porto Alegre">Porto Alegre</option>
-                        <option value="Sao Paulo">Sao Paulo</option>
-                        <option value="Miami">Miami</option>
-                        <option value="Lisbon">Lisbon</option>
-                    </select>
-                    <select className='modalityDropdown' name="modality" id="modality">
-                        <option value="Select modality" disabled>Select modality</option>
-                        <option value="On-Site">On-Site</option>
-                        <option value="Remote">Remote</option>
-                    </select>
+                <div class='select'> 
+                    <div class='location'>
+                        <select className='locationDropdown' name="location" id="location">
+                            <option value="Select location" disabled>Select location</option>
+                            <option value="Porto Alegre">Porto Alegre</option>
+                            <option value="Sao Paulo">Sao Paulo</option>
+                            <option value="Miami">Miami</option>
+                            <option value="Lisbon">Lisbon</option>
+                        </select>
+                    </div>
+                    <div class='modality'>
+                        <select className='modalityDropdown' name="modality" id="modality">
+                            <option value="Select modality" disabled>Select modality</option>
+                            <option value="On-Site">On-Site</option>
+                            <option value="Remote">Remote</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             {/* Grid */}
