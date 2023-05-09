@@ -3,7 +3,7 @@ import '../assets/fonts/Mont-Regular.otf';
 import './styles.css';
 import Header from '../components/header';
 
-const create_row = () => {
+const ProfileRow = () => {
     const row = []
     for (var i = 0; i < 6; i++)
         row.push(
@@ -15,18 +15,18 @@ const create_row = () => {
     return row
 }
 
-const generate_grid = () => {
+const ProfileGrid = () => {
     const row = []
         for (var i = 0; i < 4; i++)
             row.push(
                 <div className='userRow'>
-                    {create_row()}
+                    <ProfileRow />
                 </div>
             )
     return row
     }
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
     return (
         <div>
 
@@ -55,7 +55,7 @@ const HomeScreen = () => {
             </div>
             {/* Grid */}
             <div className='userDisplay'> 
-                {generate_grid()}
+                <ProfileGrid />
             </div>
             
             

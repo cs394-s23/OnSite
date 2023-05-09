@@ -35,7 +35,7 @@ body {
 .heroDisplay {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     background: linear-gradient(101.57deg, #57BE93 27.07%, rgba(89, 195, 85, 0.9) 60.44%);
     background-blend-mode: darken;
     height: 285px;
