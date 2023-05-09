@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 // import { getAuth, GoogleAuthProvider, connectAuthEmulator } from "@firebase/auth";
-import { getDatabase, onValue, ref, set, connectDatabaseEmulator } from "firebase/database";
+import { getDatabase, onValue, ref, set } from "firebase/database";
 
 
 const firebaseConfig = {
