@@ -17,11 +17,11 @@ const format_profiles = raw => {
 const HomeScreen = (props) => {
   const [profiles] = useState(format_profiles(props.raw_people));
   // state for dropdown menus
-  const [locationSelect, setLocationSelect] = useState("Porto Alegre");
+  const [locationSelect, setLocationSelect] = useState("Select location");
   const handleLocationChange = (event) => {
     setLocationSelect(event.target.value);
   }
-  const [modalitySelect, setModalitySelect] = useState("On-Site");
+  const [modalitySelect, setModalitySelect] = useState("Select modality");
   const handleModalityChange = (event) => {
     setModalitySelect(event.target.value);
   }
@@ -30,8 +30,8 @@ const HomeScreen = (props) => {
     const grid = [];
 
     const filtered = profiles.filter(p => {
-      const loc = p.office === locationSelect;
-      const mode = p.status === modalitySelect.toLowerCase();
+      const loc = p.office === locationSelect || locationSelect === "Select location";
+      const mode = p.status === modalitySelect.toLowerCase() || modalitySelect === "Select modality";
 
       return loc && mode;
     });
@@ -63,7 +63,7 @@ const HomeScreen = (props) => {
           <div className='location'>
             <select className='locationDropdown' name="location" id="location" 
               value={locationSelect} onChange={handleLocationChange}>
-              <option value="Select location" disabled>Select location</option>
+              <option value="Select location" >Select location</option>
               <option value="Porto Alegre">Porto Alegre</option>
               <option value="Sao Paulo">Sao Paulo</option>
               <option value="Miami">Miami</option>
@@ -73,7 +73,7 @@ const HomeScreen = (props) => {
           <div className='modality'>
             <select className='modalityDropdown' name="modality" id="modality"
               value={modalitySelect} onChange={handleModalityChange}>
-              <option value="Select modality" disabled>Select modality</option>
+              <option value="Select modality" >Select modality</option>
               <option value="On-Site">On-Site</option>
               <option value="Remote">Remote</option>
             </select>
