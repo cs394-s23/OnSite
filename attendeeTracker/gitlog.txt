@@ -1,0 +1,152 @@
+commit 6f99a06d2bb85754974fc261bea59640da35a0a3
+Author: blaise-w <blaisewebbeking2024@u.northwestern.edu>
+Date:   Sun May 7 22:56:45 2023 -0500
+
+    Style dropdown
+
+M	attendeeTracker/src/screens/styles.css
+
+commit bfc955a58ae9eb690c80c23aa07854908266c4eb
+Author: kayleigh <kayleighpeng2023@u.northwestern.edu>
+Date:   Sun May 7 18:07:30 2023 -0500
+
+    fonts updated
+
+M	attendeeTracker/src/App.js
+A	attendeeTracker/src/assets/fonts/Mont-Black.otf
+A	attendeeTracker/src/assets/fonts/Mont-BlackItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Bold.otf
+A	attendeeTracker/src/assets/fonts/Mont-BoldItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Book.otf
+A	attendeeTracker/src/assets/fonts/Mont-BookItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-ExtraLight.otf
+A	attendeeTracker/src/assets/fonts/Mont-ExtraLightItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Hairline.otf
+A	attendeeTracker/src/assets/fonts/Mont-HairlineItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Heavy.otf
+A	attendeeTracker/src/assets/fonts/Mont-HeavyItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Light.otf
+A	attendeeTracker/src/assets/fonts/Mont-LightItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Regular.otf
+A	attendeeTracker/src/assets/fonts/Mont-RegularItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-SemiBold.otf
+A	attendeeTracker/src/assets/fonts/Mont-SemiBoldItalic.otf
+A	attendeeTracker/src/assets/fonts/Mont-Thin.otf
+A	attendeeTracker/src/assets/fonts/Mont-ThinItalic.otf
+M	attendeeTracker/src/components/header.js
+M	attendeeTracker/src/components/styles.css
+R059	attendeeTracker/src/screens/home-screen-index.js	attendeeTracker/src/screens/home-screen.js
+M	attendeeTracker/src/screens/styles.css
+
+commit 26b7e750ef85617eb374af68d86348ca0447e932
+Author: MCDK-Tech <davidkim2023@u.northwestern.edu>
+Date:   Sun May 7 13:28:58 2023 -0500
+
+    Users Grid
+
+M	attendeeTracker/src/App.css
+M	attendeeTracker/src/screens/home-screen-index.js
+M	attendeeTracker/src/screens/styles.css
+A	package-lock.json
+
+commit d7801df7c8f99a2bd00ca3a88a450e7098a769a6
+Author: jesusm2024 <jesusmontero2024@u.northwestern.edu>
+Date:   Sun May 7 12:47:05 2023 -0500
+
+    Starting home screen.
+
+M	attendeeTracker/src/App.js
+A	attendeeTracker/src/assets/pics/poatek-logo-full-color.png
+A	attendeeTracker/src/components/header.js
+A	attendeeTracker/src/components/styles.css
+A	attendeeTracker/src/screens/home-screen-index.js
+A	attendeeTracker/src/screens/styles.css
+
+commit d36a608e13e9333f79fa88062543dba0232f6295
+Author: George Bian <bianz20@berkeley.edu>
+Date:   Fri May 5 11:31:58 2023 -0500
+
+    Initiated app, edited readME
+
+A	.idea/.gitignore
+A	.idea/attendeeTracker.iml
+A	.idea/aws.xml
+A	.idea/modules.xml
+A	.idea/vcs.xml
+A	attendeeTracker/.gitignore
+A	attendeeTracker/README.md
+A	attendeeTracker/package-lock.json
+A	attendeeTracker/package.json
+A	attendeeTracker/public/favicon.ico
+A	attendeeTracker/public/index.html
+A	attendeeTracker/public/logo192.png
+A	attendeeTracker/public/logo512.png
+A	attendeeTracker/public/manifest.json
+A	attendeeTracker/public/robots.txt
+A	attendeeTracker/src/App.css
+A	attendeeTracker/src/App.js
+A	attendeeTracker/src/App.test.js
+A	attendeeTracker/src/index.css
+A	attendeeTracker/src/index.js
+A	attendeeTracker/src/logo.svg
+A	attendeeTracker/src/reportWebVitals.js
+A	attendeeTracker/src/setupTests.js
+
+commit 3fce49cfe0faf360aa231d2e249705afd8ee0482
+Author: George Bian <bianz20@berkeley.edu>
+Date:   Fri May 5 11:30:43 2023 -0500
+
+    Initiated app, edited readME
+
+M	README.md
+D	my-app/.gitignore
+D	my-app/README.md
+D	my-app/package-lock.json
+D	my-app/package.json
+D	my-app/public/favicon.ico
+D	my-app/public/index.html
+D	my-app/public/logo192.png
+D	my-app/public/logo512.png
+D	my-app/public/manifest.json
+D	my-app/public/robots.txt
+D	my-app/src/App.css
+D	my-app/src/App.js
+D	my-app/src/App.test.js
+D	my-app/src/index.css
+D	my-app/src/index.js
+D	my-app/src/logo.svg
+D	my-app/src/reportWebVitals.js
+D	my-app/src/setupTests.js
+
+commit 75fed669af8baf472e9ad5939f793beb457f132a
+Author: George Bian <bianz20@berkeley.edu>
+Date:   Fri May 5 11:22:19 2023 -0500
+
+    Created react web
+
+A	my-app/.gitignore
+A	my-app/README.md
+A	my-app/package-lock.json
+A	my-app/package.json
+A	my-app/public/favicon.ico
+A	my-app/public/index.html
+A	my-app/public/logo192.png
+A	my-app/public/logo512.png
+A	my-app/public/manifest.json
+A	my-app/public/robots.txt
+A	my-app/src/App.css
+A	my-app/src/App.js
+A	my-app/src/App.test.js
+A	my-app/src/index.css
+A	my-app/src/index.js
+A	my-app/src/logo.svg
+A	my-app/src/reportWebVitals.js
+A	my-app/src/setupTests.js
+
+commit 0cc67016d63bcd5bedde52b1c95756e101fcbfd4
+Author: George Bian <bianz20@berkeley.edu>
+Date:   Fri May 5 11:16:01 2023 -0500
+
+    first commit
+
+A	README.md
