@@ -28,37 +28,34 @@ import { useState } from 'react';
 //   return row;
 // }
 
-const ProfileCol = (user) => {
-  const row = [];
-  for (var i = 0; i < 6; i++)
-    console.log('user', user.user.name)
-    row.push(
-        <div key={i}>
-          <div className='user'></div>
-          <h3 className="nameText">{user.user.name}</h3>
-          <p className="positionText">{user.user.role}</p>
-        </div>
-    );
-  return row;
-}
+// const ProfileCol = (user) => {
+//   const row = [];
+//   for (var i = 0; i < 6; i++)
+//     console.log('user', user.user.name)
+//     row.push(
+//         <div key={i}>
+//           <div className='user'></div>
+//           <h3 className="nameText">{user.user.name}</h3>
+//           <p className="positionText">{user.user.role}</p>
+//         </div>
+//     );
+//   return row;
+// }
 
-const ProfileGrid = (profiles) => {
-  const row = []
-  // console.log(profiles)
-  Object.keys(profiles).forEach(function (key, i){
-    profiles[key].forEach(function (profile) {
-      let temp_profile = [];
-      for (var i = 0; i < 6; i++) {
-        temp_profile.push(profile)
-      }
-      row.push (
-        <div key={i} className='userRow'>
-          <ProfileCol user={profile} />
-        </div>
-      );
-    })
+const ProfileGrid = (props) => {
+  const grid = [];
+
+  props.profiles.forEach((profile, i) => {
+    grid.push(
+      <div key={i}>
+        <div className='user'></div>
+        <h3 className="nameText">{profile.name}</h3>
+        <p className="positionText">{profile.role}</p>
+      </div>
+    );
   });
-  return row;
+
+  return grid;
 }
 
 const format_profiles = raw => {

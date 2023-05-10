@@ -85,6 +85,8 @@ body {
 .userDisplay {
     width: 100%;
     padding: 60px 15%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .locationDropdown,
