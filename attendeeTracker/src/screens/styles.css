@@ -144,7 +144,11 @@ body {
 .heroDisplay select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;
+    appearance: none;  
+}
+
+.heroDisplay select option {
+    color: black;
 }
 
 .profilePic {
