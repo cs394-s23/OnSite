@@ -53,7 +53,7 @@ body {
     margin-top: 0px;
 }
 
-.user {
+/*.user {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,32 +61,47 @@ body {
     height: 120px;
     border-radius: 50%;
     background-color: lightgray;
+}*/
+
+.userCard {
+    width: 120px;
+    margin: 0px 2%;
 }
 
 .nameText {
     color: #004260;
     font-weight: normal;
     font-size: 14px;
+    width: 100%;
 }
 
 .positionText {
     color: #48B96F;
     font-weight: normal;
     font-size: 14px;
+    width: 100%;
 }
 
-.userRow {
+/*.userRow {
     display: flex;
     flex-direction: row;
     justify-content: space-between;   
     margin-bottom: 40px;
-}
+}*/
 
 .userDisplay {
     width: 100%;
     padding: 60px 15%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Added this to add filler space if the last row isn't complete. Only works if it's only missing one, so it's very much so a temp solution*/
+.userDisplay::after {
+    content: "";
+    width: 120px;
+    margin: 0px 2%;
 }
 
 .locationDropdown,
