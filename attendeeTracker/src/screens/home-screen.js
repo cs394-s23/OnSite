@@ -48,7 +48,8 @@ const ProfileGrid = (props) => {
   props.profiles.forEach((profile, i) => {
     grid.push(
       <div key={i}>
-        <div className='user'></div>
+        {/* <div className='user'></div> */}
+        <img src={'https://picsum.photos/100?random='+ String(i)} alt="profilePic" className='profilePic'></img>
         <h3 className="nameText">{profile.name}</h3>
         <p className="positionText">{profile.role}</p>
       </div>
