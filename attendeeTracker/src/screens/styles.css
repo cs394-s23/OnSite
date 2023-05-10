@@ -77,7 +77,7 @@ body {
 
 .userRow {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     justify-content: space-between;   
     margin-bottom: 40px;
 }

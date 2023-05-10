@@ -4,27 +4,60 @@ import './styles.css';
 import Header from '../components/header';
 import { useState } from 'react';
 
-const ProfileRow = () => {
+// const ProfileRow = () => {
+//   const row = [];
+//   for (var i = 0; i < 6; i++)
+//     row.push(
+//       <div key={i}>
+//         <div className='user'></div>
+//         <h3 className="nameText">Name</h3>
+//         <p className="positionText">Position</p>
+//       </div>
+//     );
+//   return row;
+// }
+//
+// const ProfileGrid = () => {
+//   const row = []
+//     for (var i = 0; i < 4; i++)
+//       row.push(
+//         <div key={i} className='userRow'>
+//           <ProfileRow />
+//         </div>
+//       );
+//   return row;
+// }
+
+const ProfileCol = (user) => {
   const row = [];
   for (var i = 0; i < 6; i++)
+    console.log('user', user.user.name)
     row.push(
-      <div key={i}>
-        <div className='user'></div>
-        <h3 className="nameText">Name</h3>
-        <p className="positionText">Position</p>
-      </div>
+        <div key={i}>
+          <div className='user'></div>
+          <h3 className="nameText">{user.user.name}</h3>
+          <p className="positionText">{user.user.role}</p>
+        </div>
     );
   return row;
 }
 
-const ProfileGrid = () => {
+const ProfileGrid = (profiles) => {
   const row = []
-    for (var i = 0; i < 4; i++)
-      row.push(
+  // console.log(profiles)
+  Object.keys(profiles).forEach(function (key, i){
+    profiles[key].forEach(function (profile) {
+      let temp_profile = [];
+      for (var i = 0; i < 6; i++) {
+        temp_profile.push(profile)
+      }
+      row.push (
         <div key={i} className='userRow'>
-          <ProfileRow />
+          <ProfileCol user={profile} />
         </div>
       );
+    })
+  });
   return row;
 }
 
@@ -39,7 +72,7 @@ const format_profiles = raw => {
 
 const HomeScreen = (props) => {
   const [profiles] = useState(format_profiles(props.raw_people));
-  console.log(profiles);
+  // console.log(profiles);
 
   return (
     <div>
@@ -70,7 +103,7 @@ const HomeScreen = (props) => {
 
       {/* Grid */}
       <div className='userDisplay'> 
-        <ProfileGrid />
+        <ProfileGrid profiles={profiles} />
       </div>
     </div>
   )
