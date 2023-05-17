@@ -82,11 +82,13 @@ const Homescreen = (props) => {
                   <p>| 45 people</p>
                 </div>
                 <div className='headerFilters'>
-                    <div className='searchEmployee'>
+                    {/*div className='searchEmployee'*/}
+                    <form className='searchEmployee'>
                       <FontAwesomeIcon icon={faMagnifyingGlass} />
                       {/* need to double check wtf html this should be */}
-                      <textarea placeholder='Looking for someone?'></textarea>
-                    </div>
+                      {/* textarea placeholder='Looking for someone?'*/}
+                      <input placeholder='Looking for someone?' type='search'></input>
+                    </form>
                     {/* these should probably be checkboxes eventually */}
                     <div className='filterOptions'>
                         <div id='marketing'>Marketing</div>

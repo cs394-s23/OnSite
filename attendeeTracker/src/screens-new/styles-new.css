@@ -60,6 +60,11 @@ body {
     width: 9vw;
 }
 
+/*h1 comes with pre-defined top/bottom margins, I removed them but idk if that was necessary*/
+h1 {
+    margin: 0;
+}
+
 .headerSection {
     width: 90vw;
     height: 40vh;
@@ -121,6 +126,15 @@ body {
     background-color: white;
     width: 30%;
 }
+
+/*maybe we can change the color or outline of the form when active or focus?*/
+input[type="search"] {
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+}
+
 
 .filterOptions {
     display: flex;
