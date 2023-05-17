@@ -1,0 +1,136 @@
+body * {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Mont-Regular";
+    src: local("Mont-Regular"),
+      url('../assets/fonts/Mont-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Mont Black";
+    src: local("Mont-Black"),
+      url('../assets/fonts/Mont-Black.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "FontAwesome";
+    font-weight: normal;
+    font-style : normal;
+           src : url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?v=4.3.0");
+           src : url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0") format("embedded-opentype"),
+                 url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff2?v=4.3.0") format("woff2"),
+                 url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff?v=4.3.0") format("woff"),
+                 url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf?v=4.3.0") format("truetype"),
+                 url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
+}
+  
+body {
+    font-family: "Mont-Regular", Arial, Tahoma, sans-serif;
+    margin: 0;
+    background-color: white;
+}
+
+.fullLayout {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    width: 100vw;
+}
+
+.navbar {
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 10vw;
+    height: 100vh;
+}
+
+.navItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.logo, .logoImg {
+    width: 9vw;
+}
+
+.headerSection {
+    width: 90vw;
+    height: 40vh;
+    background-color: rgb(238, 238, 238);
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.headerSection h2 {
+    margin-top: 0px;
+}
+
+.headerGreeting {
+    font-weight: normal;
+    color: #043348;
+}
+
+.headerMessage {
+    width: 100%;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    padding: 0px 25px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.whosInHeading {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.whosInHeading p, .whosInHeading h2 {
+    margin: 0px;
+}
+
+.whosInHeading p {
+    font-weight: bold;
+    color: #818181;
+}
+
+.headerFilters {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.searchEmployee {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: solid 1px #818181;
+    border-radius: 5px;
+    padding: 0px 10px;
+    justify-content: flex-start;
+    background-color: white;
+    width: 30%;
+}
+
+.filterOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.filterOptions div {
+    border: solid 1px #818181;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}

@@ -1,5 +1,6 @@
 import './App.css';
 import HomeScreen from './screens/home-screen';
+import Homescreen from './screens-new/homescreen';
 import { useDbData } from './utilities/firebase';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
       {/* <header className="App-header">
         <p>Welcome to the Attendee Tracker!</p>
       </header> */}
-      <HomeScreen raw_people={people} />
+      <Homescreen raw_people={people} />
     </div>
   );
 }
