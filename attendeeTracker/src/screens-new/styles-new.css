@@ -40,13 +40,20 @@ body {
 }
 
 .navbar {
-    border: solid 1px black;
+    box-shadow: 2px 0px 2px 1px rgba(155, 155, 155, 0.25);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 10vw;
     height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+.body {
+    margin-left: 10vw;
 }
 
 .navItems {
@@ -57,7 +64,8 @@ body {
 }
 
 .logo, .logoImg {
-    width: 9vw;
+    width: 10vw;
+    height: auto;
 }
 
 /*h1 comes with pre-defined top/bottom margins, I removed them but idk if that was necessary*/
@@ -132,9 +140,7 @@ input[type="search"] {
     border: none;
     width: 100%;
     outline: none;
-    font-size: 14px;
 }
-
 
 .filterOptions {
     display: flex;
