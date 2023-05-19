@@ -146,6 +146,11 @@ const Homescreen = (props) => {
       setGrid(grid);
       setEmployees(newEmployees);
     }
+
+    const activeDropdown = (event) => {
+      event.currentTarget.toggleClass('is-active');
+      console.log('active dropdown call');
+    }
   
     return (
       <div className='fullLayout'>
@@ -193,12 +198,17 @@ const Homescreen = (props) => {
                     </div> */}
                     
                     <form onChange={DepartmentSelect}>
-                      <label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label>
-                      <label><input type='checkbox' name='design' value='design' id='design'/>Design</label>
-                      <label><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</label>
-                      <label><input type='checkbox' name='staff' value='staff' id='staff'/>Staff</label>
-                      <label><input type='checkbox' name='dataScience' value='dataScience' id='dataScience'/>Data Science</label>
-                      <label><input type='checkbox' name='mobile' value='mobile' id='mobile'/>Mobile</label>
+                      <div className='department-dropdown'>
+                        <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className='dropdown-arrow'></i></p>
+                        <ul className='department-dropdown-list'>
+                          <li className='department-item'><label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label></li>
+                          <li className='department-item'><label><input type='checkbox' name='design' value='design' id='design'/>Design</label></li>
+                          <li className='department-item'><label><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</label></li>
+                          <li className='department-item'><label><input type='checkbox' name='staff' value='staff' id='staff'/>Staff</label></li>
+                          <li className='department-item'><label><input type='checkbox' name='dataScience' value='dataScience' id='dataScience'/>Data Science</label></li>
+                          <li className='department-item'><label><input type='checkbox' name='mobile' value='mobile' id='mobile'/>Mobile</label></li>
+                        </ul>
+                      </div>
                     </form>
                 </div>
             </div>

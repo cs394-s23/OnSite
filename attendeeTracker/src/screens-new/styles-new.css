@@ -54,6 +54,7 @@ body {
 
 .body {
     margin-left: 10vw;
+    width: 90vw;
 }
 
 .navItems {
@@ -74,13 +75,14 @@ h1 {
 }
 
 .headerSection {
-    width: 90vw;
     height: 40vh;
     background-color: rgb(238, 238, 238);
     padding: 20px 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
+    z-index: 10;
 }
 
 .headerSection h2 {
@@ -121,6 +123,7 @@ h1 {
     display: flex;
     margin-top: 20px;
     gap: 30px;
+    height: 50px;
 }
 
 .searchEmployee {
@@ -155,6 +158,53 @@ input[type="search"] {
     padding: 10px;
 }
 
-.filterOptions button {
+.department-dropdown {
+    /*margin: 0 auto;*/
+    width: 250px;
+}
 
+.dropdown-text {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    border: solid 1px #818181;
+    border-radius: 5px;
+    height: 50px;
+    background-color: white;
+    justify-content: space-between;
+    padding: 0px 15px;
+}
+
+.dropdown-arrow {
+    border: solid #818181;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.department-dropdown-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: solid 1px #818181;
+    border-radius: 5px;
+    margin: auto;
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+    background-color: white;
+}
+
+.department-item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.department-item:hover {
+    background-color: #d2d2d2;
 }
