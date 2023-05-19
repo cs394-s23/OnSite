@@ -54,42 +54,29 @@ const Homescreen = (props) => {
         );
       });
     
-      return {grid, employees};
+      return grid;
     }
 
     // Set initial grid to all employees.
-    const [grid, setGrid] = useState(ProfileGrid().grid);
+    const [grid, setGrid] = useState(ProfileGrid());
 
-    // Actual profile data.
-    const [employees, setEmployees] = useState(ProfileGrid().employees);
-
-    // Whether a at least one department has been selected.
-    const [departmentSelected, setDepartmentSelected] = useState(false);
-
-    const [searchBoxEmpty, setSearchBoxEmpty] = useState(true);
+    // Current profile data.
+    const [employees, setEmployees] = useState(profiles);
 
     const NameSearch = () => {
 
       const grid = [];
-      const newEmployees = [];
       
       // Retrieve search box element.
       let name = document.getElementById('search');
 
-      // Search box is empty. 
-      if (name === null){
-        setSearchBoxEmpty(true);
-        setGrid(ProfileGrid().grid);
-        setEmployees(ProfileGrid().employees);
-        return;
-      }
       // Search box is not empty (lowercase & remove spaces). 
       name = name.value.toLowerCase().split(" ").join("");
 
+
       // Iterate through profiles to find matching name. 
-      profiles.forEach((profile, i) => {
+      employees.forEach((profile, i) => {
         if (profile.name.toLowerCase().split(" ").join("").substring(0,name.length) === name) {
-          newEmployees.push(profile);
           grid.push(
             <div key={i} className='userCard'>
               {/* <div className='user'></div> */}
@@ -102,15 +89,7 @@ const Homescreen = (props) => {
       })
 
       // Update the grid and employees.
-      setSearchBoxEmpty(false); 
       setGrid(grid);
-      console.log('newEmployees', newEmployees);
-      setEmployees(newEmployees);
-
-      // Update the grid if at least one department is selected.
-      // if (departmentSelected){
-      //     DepartmentSelect();
-      // }
     }
 
     const DepartmentSelect = () => {
@@ -126,20 +105,20 @@ const Homescreen = (props) => {
       // Store all checklist bools. 
       const departments = [marketing, design, softwareEngineering, staff, dataScience, mobile];
 
-      // Reload all profiles if no departments are selected.
+      // Reload all profiles and reset to employees if no departments are selected.
       if (departments.every(d =>d === false)){
-        setDepartmentSelected(false);
-        setGrid(ProfileGrid().grid);
-        setEmployees(ProfileGrid().employees);
+        setGrid(ProfileGrid());
+        setEmployees(profiles);
         return;
       }
 
-      // At least one department selected and search box empty. 
 
       // Strings to compare department. 
       const depString = ['marketing', 'design', 'softwareEngineering','staff', 'dataScience', 'mobile'];
 
       const grid = [];
+
+      const newEmployees = [];
 
       // Iterate through the departments.
       departments.forEach((department, j) => {
@@ -149,6 +128,7 @@ const Homescreen = (props) => {
           profiles.forEach((profile, i) => {
             // Check if the profile is part of the current department. 
             if (profile.department === depString[j]){
+              newEmployees.push(profile);
               grid.push(
                 <div key={i} className='userCard'>
                   {/* <div className='user'></div> */}
@@ -162,9 +142,9 @@ const Homescreen = (props) => {
         }
       });
      
-      // Update the grid.
-      setDepartmentSelected(true);
+      // Update the grid and employees.
       setGrid(grid);
+      setEmployees(newEmployees);
     }
   
     return (
@@ -193,13 +173,15 @@ const Homescreen = (props) => {
                 </div>
                 <div className='whosInHeading'>
                   <h2 className='whosIn'>Who's in the office today</h2>
-                  <p>| {grid.length} people</p>
+                  {grid.length === 1 ? <p>| {grid.length} person</p>: <p>| {grid.length} people</p>}
                 </div>
                 <div className='headerFilters'>
                     <form className='searchEmployee'>
                       <FontAwesomeIcon icon={faMagnifyingGlass} />
                       <input placeholder='Looking for someone?' type='search' id='search' onChange={NameSearch}></input>
                     </form>
+
+                    {/* please delete this when no longer needed - Jesus */}
                     {/* these should probably be checkboxes eventually */}
                     {/* <div className='filterOptions'>
                         <div id='marketing' onClick={DepartmentSelect}>Marketing</div>
