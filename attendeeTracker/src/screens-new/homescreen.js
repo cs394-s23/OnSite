@@ -45,11 +45,11 @@ const Homescreen = (props) => {
         employees.push(profile);
   
         grid.push(
-          <div key={i} className='userCard'>
+          <div key={i} className='userInfo'>
             {/* <div className='user'></div> */}
-            <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='profilePic'></img>
-            <h3 className="nameText">{profile.name}</h3>
-            <p className="positionText">{profile.role}</p>
+            <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='userPic'></img>
+            <h3 className="userName">{profile.name}</h3>
+            <p className="userTitle">{profile.role}</p>
           </div>
         );
       });
@@ -78,11 +78,11 @@ const Homescreen = (props) => {
       employees.forEach((profile, i) => {
         if (profile.name.toLowerCase().split(" ").join("").substring(0,name.length) === name) {
           grid.push(
-            <div key={i} className='userCard'>
+            <div key={i} className='userInfo'>
               {/* <div className='user'></div> */}
-              <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='profilePic'></img>
-              <h3 className="nameText">{profile.name}</h3>
-              <p className="positionText">{profile.role}</p>
+              <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='userPic'></img>
+              <h3 className="userName">{profile.name}</h3>
+              <p className="userTitle">{profile.role}</p>
             </div>
           );
         }
@@ -130,11 +130,11 @@ const Homescreen = (props) => {
             if (profile.department === depString[j]){
               newEmployees.push(profile);
               grid.push(
-                <div key={i} className='userCard'>
+                <div key={i} className='userInfo'>
                   {/* <div className='user'></div> */}
-                  <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='profilePic'></img>
-                  <h3 className="nameText">{profile.name}</h3>
-                  <p className="positionText">{profile.role}</p>
+                  <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='userPic'></img>
+                  <h3 className="userName">{profile.name}</h3>
+                  <p className="userTitle">{profile.role}</p>
               </div>
               );
             } 
@@ -201,8 +201,8 @@ const Homescreen = (props) => {
                     </form>
                     <form onChange={DepartmentSelect}>
                       <div className='department-dropdown'>
-                        <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-open": "dropdown-arrow-closed"}></i></p>
-                        <ul className={dropdownIsActive ? "department-dropdown-list" : "dropdownIsInactive"}>
+                        <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-closed" : "dropdown-arrow-open"}></i></p>
+                        <ul className={dropdownIsActive ? "dropdownIsInactive" : "department-dropdown-list"}>
                           <li className='department-item'><label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label></li>
                           <li className='department-item'><label><input type='checkbox' name='design' value='design' id='design'/>Design</label></li>
                           <li className='department-item'><label><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</label></li>
@@ -215,9 +215,9 @@ const Homescreen = (props) => {
                 </div>
             </div>
             {/* Grid */}
-            <div className='userDisplay'> 
+            <div className='userBox'> 
                 {/* <ProfileGrid profiles={profiles} /> */}
-                {grid.length > 0 ? grid : <p>No employee/s found</p>}
+                {grid.length > 0 ? grid : <p className='emptySearchResult'>No employees found</p>}
             </div>
         </div>
       </div>
