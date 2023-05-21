@@ -147,25 +147,39 @@ const Homescreen = (props) => {
       setEmployees(newEmployees);
     }
 
-    const activeDropdown = (event) => {
-      event.currentTarget.toggleClass('is-active');
-      console.log('active dropdown call');
+    const [dropdownIsActive, setDropdownIsActive] = useState("false");
+    const activeDropdown = () => {
+      setDropdownIsActive(!dropdownIsActive);
     }
   
+    const searchFocus = () => {
+      var searchBar = document.getElementById('searchEmployee');
+      searchBar.style.border = 'solid 2px #BDBDBD';
+      document.getElementById('employyeeSearchIcon').style.color = "#23445D";
+    }
+
+    const searchUnFocus = () => {
+      var searchBar = document.getElementById('searchEmployee');
+      searchBar.style.border = 'solid 1px #BDBDBD';
+      document.getElementById('employyeeSearchIcon').style.color = "#BDBDBD";
+    }
+
+    const [currentLocation, setCurrentLocation] = useState("");
+
     return (
       <div className='fullLayout'>
         {/* Nav */}
         <div className='navbar'> 
             <h1 className='logo'><img className='logoImg' src={logo} alt='logo'></img></h1>
             <div className='navItems'>
-                <a id='poa' className='navItem'>
-                    <FontAwesomeIcon icon={faLocationDot} size='4x'/>
+                <div id='poa-office' className='navItem'>
+                    <FontAwesomeIcon icon={faLocationDot} size='3x'/>
                     <p>POA</p>
-                </a>
-                <a id='sp' className='navItem'>
-                    <FontAwesomeIcon icon={faLocationDot} size='4x'/>
+                </div>
+                <div id='sp-office' className='navItem'>
+                    <FontAwesomeIcon icon={faLocationDot} size='3x'/>
                     <p>SP</p>
-                </a>
+                </div>
             </div>
         </div>
   
@@ -178,29 +192,17 @@ const Homescreen = (props) => {
                 </div>
                 <div className='whosInHeading'>
                   <h2 className='whosIn'>Who's in the office today</h2>
-                  {grid.length === 1 ? <p>| {grid.length} person</p>: <p>| {grid.length} people</p>}
+                  {grid.length === 1 ? <p>| {grid.length} person</p>:<p>|  {grid.length} people</p>}
                 </div>
                 <div className='headerFilters'>
-                    <form className='searchEmployee'>
-                      <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <form className='searchEmployee' id='searchEmployee' onFocus={searchFocus} onBlur={searchUnFocus}>
+                      <FontAwesomeIcon icon={faMagnifyingGlass} id='employyeeSearchIcon'/>
                       <input placeholder='Looking for someone?' type='search' id='search' onChange={NameSearch}></input>
                     </form>
-
-                    {/* please delete this when no longer needed - Jesus */}
-                    {/* these should probably be checkboxes eventually */}
-                    {/* <div className='filterOptions'>
-                        <div id='marketing' onClick={DepartmentSelect}>Marketing</div>
-                        <div id='design'>Design</div>
-                        <div id='softwareEngineering'>Software Engineering</div>
-                        <div id='staff'>Staff</div>
-                        <div id='dataScience'>Data Science</div>
-                        <div id='mobile'>Mobile</div>
-                    </div> */}
-                    
                     <form onChange={DepartmentSelect}>
                       <div className='department-dropdown'>
-                        <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className='dropdown-arrow'></i></p>
-                        <ul className='department-dropdown-list'>
+                        <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-open": "dropdown-arrow-closed"}></i></p>
+                        <ul className={dropdownIsActive ? "department-dropdown-list" : "dropdownIsInactive"}>
                           <li className='department-item'><label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label></li>
                           <li className='department-item'><label><input type='checkbox' name='design' value='design' id='design'/>Design</label></li>
                           <li className='department-item'><label><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</label></li>
