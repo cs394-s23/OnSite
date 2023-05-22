@@ -155,7 +155,7 @@ const Homescreen = (props) => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
           //console.log('Clicked outside');
-          setDropdownIsActive(!dropdownIsActive);
+          setDropdownIsActive(true);
         }
       };
 
