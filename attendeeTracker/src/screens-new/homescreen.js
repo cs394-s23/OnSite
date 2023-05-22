@@ -1,7 +1,6 @@
-import React from 'react';
 import '../assets/fonts/Mont-Regular.otf';
 import './styles-new.css';
-import { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/pics/poatek-logo-square.png';
@@ -151,6 +150,22 @@ const Homescreen = (props) => {
     const activeDropdown = () => {
       setDropdownIsActive(!dropdownIsActive);
     }
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          //console.log('Clicked outside');
+          setDropdownIsActive(!dropdownIsActive);
+        }
+      };
+
+      document.addEventListener('click', handleClickOutside);
+
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, []);
   
     const searchFocus = () => {
       var searchBar = document.getElementById('searchEmployee');
@@ -200,7 +215,7 @@ const Homescreen = (props) => {
                       <input placeholder='Looking for someone?' type='search' id='search' onChange={NameSearch}></input>
                     </form>
                     <form onChange={DepartmentSelect}>
-                      <div className='department-dropdown'>
+                      <div className='department-dropdown' ref={dropdownRef}>
                         <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-closed" : "dropdown-arrow-open"}></i></p>
                         <ul className={dropdownIsActive ? "dropdownIsInactive" : "department-dropdown-list"}>
                           <li className='department-item'><label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label></li>
