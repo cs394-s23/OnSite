@@ -87,7 +87,7 @@ const Homescreen = (props) => {
         }
       })
 
-      // Update the grid and employees.
+      // Update the grid.
       setGrid(grid);
     }
 
@@ -104,13 +104,12 @@ const Homescreen = (props) => {
       // Store all checklist bools. 
       const departments = [marketing, design, softwareEngineering, staff, dataScience, mobile];
 
-      // Reload all profiles and reset to employees if no departments are selected.
+      // Reload all profiles and reset employees if no department/s are selected.
       if (departments.every(d =>d === false)){
         setGrid(ProfileGrid());
         setEmployees(profiles);
         return;
       }
-
 
       // Strings to compare department. 
       const depString = ['marketing', 'design', 'softwareEngineering','staff', 'dataScience', 'mobile'];
@@ -123,7 +122,7 @@ const Homescreen = (props) => {
       departments.forEach((department, j) => {
         // Department is selected. 
         if (department){
-          // Iterate through the current list of employee. 
+          // Iterate through the list of employees. 
           profiles.forEach((profile, i) => {
             // Check if the profile is part of the current department. 
             if (profile.department === depString[j]){
@@ -231,7 +230,6 @@ const Homescreen = (props) => {
             </div>
             {/* Grid */}
             <div className='userBox'> 
-                {/* <ProfileGrid profiles={profiles} /> */}
                 {grid.length > 0 ? grid : <p className='emptySearchResult'>No employees found</p>}
             </div>
         </div>
