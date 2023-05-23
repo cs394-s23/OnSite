@@ -180,6 +180,21 @@ const Homescreen = (props) => {
 
     const [currentLocation, setCurrentLocation] = useState("");
 
+    const handleCheckboxClick = (event, checkboxId) => {
+      event.stopPropagation();
+      const checkbox = document.getElementById(checkboxId);
+      if (event.target.tagName.toLowerCase() !== 'input') {
+        checkbox.checked = !checkbox.checked; // Toggle the checked state of the checkbox
+      }
+      DepartmentSelect();
+    };
+    
+    const handleDepartmentTextClick = (event, checkboxId) => {
+      const checkbox = document.getElementById(checkboxId);
+      checkbox.checked = !checkbox.checked; // Toggle the checked state of the checkbox
+      DepartmentSelect();
+    };
+
     return (
       <div className='fullLayout'>
         {/* Nav */}
@@ -214,15 +229,57 @@ const Homescreen = (props) => {
                       <input placeholder='Looking for someone?' type='search' id='search' onChange={NameSearch}></input>
                     </form>
                     <form onChange={DepartmentSelect}>
-                      <div className='department-dropdown' ref={dropdownRef}>
-                        <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-closed" : "dropdown-arrow-open"}></i></p>
+                      <div className='department-dropdown' ref={dropdownRef} onClick={() => setDropdownIsActive(!dropdownIsActive)}>
+                        <p className='dropdown-text'>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-closed" : "dropdown-arrow-open"}></i></p>
                         <ul className={dropdownIsActive ? "dropdownIsInactive" : "department-dropdown-list"}>
-                          <li className='department-item'><label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='design' value='design' id='design'/>Design</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='staff' value='staff' id='staff'/>Staff</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='dataScience' value='dataScience' id='dataScience'/>Data Science</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='mobile' value='mobile' id='mobile'/>Mobile</label></li>
+                          <li className='department-item' onClick={(e) => handleCheckboxClick(e, 'marketing')}>
+                            <label>
+                              <input type='checkbox' name='marketing' value='marketing' id='marketing' />
+                              <span onClick={(e) => handleDepartmentTextClick(e, 'marketing')}>
+                                Marketing
+                              </span>
+                            </label>
+                          </li>
+                          <li className='department-item' onClick={(e) => handleCheckboxClick(e, 'design')}>
+                            <label>
+                              <input type='checkbox' name='design' value='design' id='design' />
+                              <span onClick={(e) => handleDepartmentTextClick(e, 'design')}>
+                                Design
+                              </span>
+                            </label>
+                          </li>
+                          <li className='department-item' onClick={(e) => handleCheckboxClick(e, 'softwareEngineering')}>
+                            <label>
+                              <input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering' />
+                              <span onClick={(e) => handleDepartmentTextClick(e, 'softwareEngineering')}>
+                                Software Engineering
+                              </span>
+                            </label>
+                          </li>
+                          <li className='department-item' onClick={(e) => handleCheckboxClick(e, 'staff')}>
+                            <label>
+                              <input type='checkbox' name='staff' value='staff' id='staff' />
+                              <span onClick={(e) => handleDepartmentTextClick(e, 'staff')}>
+                                Staff
+                              </span>
+                            </label>
+                          </li>
+                          <li className='department-item' onClick={(e) => handleCheckboxClick(e, 'dataScience')}>
+                            <label>
+                              <input type='checkbox' name='dataScience' value='dataScience' id='dataScience' />
+                              <span onClick={(e) => handleDepartmentTextClick(e, 'dataScience')}>
+                                Data Science
+                              </span>
+                            </label>
+                          </li>
+                          <li className='department-item' onClick={(e) => handleCheckboxClick(e, 'mobile')}>
+                            <label>
+                              <input type='checkbox' name='mobile' value='mobile' id='mobile' />
+                              <span onClick={(e) => handleDepartmentTextClick(e, 'mobile')}>
+                                Mobile
+                              </span>
+                            </label>
+                          </li>
                         </ul>
                       </div>
                     </form>
