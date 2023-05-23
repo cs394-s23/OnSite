@@ -1,33 +1,38 @@
 
 import { render, screen } from '@testing-library/react';
 import App from './App';
-
 import { useDbData } from './utilities/firebase';
 
-// vi.mock('../utilities/firebase');
+// jest.mock('./utilities/firebase');
 
 const mockProfiles = {
-  "88888": {
-    "department": "marketing",
-    "name": "Abby",
-    "office": "Lisbon",
-    "role": "Manager",
-    "status": "remote"
+  "people": {
+    "88888": {
+      "department": "marketing",
+      "name": "Mock Name",
+      "office": "Lisbon",
+      "role": "Manager",
+      "status": "remote"
+    }
   }
 };
 
-it('has different department', async () => {
-  render(<App />);
-  await screen.findByText(/department/);
-});
+// it('has different department', async () => {
+//   useDbData.mockReturnValue(mockProfiles);
+//   render(<App />);
+//   await screen.findByText(/department/);
+// });
 
-it('mocking network call', () => {
-  // useData.mockReturnValue([mockSchedule, false, null]);
-  // useUserState.mockReturnValue(null);
+test('renders App', async () => {
+  render(<App />)
+  expect(await screen.findByText(/office/)).toBeVisible()
+})
 
-  // useDbData.mockReturnValue(mockProfiles);
 
-  render(<App />);
-  const name = screen.queryByText(/Abby/);
-  expect(name).toBeInTheDocument();
-});
+test('mock user on dashboard', async () => {
+  useDbData.mockReturnValue(mockProfiles);
+  render(
+    <App />
+  );
+  expect(await screen.findByText('Mock Name', {}, { timeout: 3000})).toBeVisible();
+})
