@@ -27,6 +27,8 @@ const Homescreen = (props) => {
       setModalitySelect(event.target.value);
     }
 
+    console.log('first profile',profiles[0])
+
     const ProfileGrid = () => {
       const grid = [];
       const employees = [];
@@ -49,6 +51,7 @@ const Homescreen = (props) => {
             <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='userPic'></img>
             <h3 className="userName">{profile.name}</h3>
             <p className="userTitle">{profile.role}</p>
+            <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
           </div>
         );
       });
@@ -82,6 +85,7 @@ const Homescreen = (props) => {
               <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='userPic'></img>
               <h3 className="userName">{profile.name}</h3>
               <p className="userTitle">{profile.role}</p>
+              <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
             </div>
           );
         }
@@ -133,6 +137,7 @@ const Homescreen = (props) => {
                   <img src={'https://picsum.photos/100?random='+ String(parseInt(profile.id))} alt="profilePic" className='userPic'></img>
                   <h3 className="userName">{profile.name}</h3>
                   <p className="userTitle">{profile.role}</p>
+                  <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
               </div>
               );
             } 
@@ -146,9 +151,8 @@ const Homescreen = (props) => {
     }
 
     const [dropdownIsActive, setDropdownIsActive] = useState("false");
-    const activeDropdown = (e) => {
+    const activeDropdown = () => {
       setDropdownIsActive(!dropdownIsActive);
-      console.log('event', e);
     }
     const dropdownRef = useRef(null);
 

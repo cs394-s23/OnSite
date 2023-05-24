@@ -269,6 +269,20 @@ input[type="search"]::placeholder {
     font-weight: 300;
 }
 
+.onsiteStatus {
+    font-size: 14px;
+    margin: 5px;
+    color: #40c46c;
+    font-weight: 500;
+}
+
+.remoteStatus {
+    font-size: 14px;
+    margin: 5px;
+    color: #1a9dc9;
+    font-weight: 500;
+}
+
 .emptySearchResult {
     width: calc(90vw - 80px);
     text-align: start;
