@@ -1,13 +1,15 @@
 
+
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { useDbData } from './utilities/firebase';
 
-// jest.mock('./utilities/firebase');
+
+jest.mock('./utilities/firebase');
 
 const mockProfiles = {
   "people": {
-    "88888": {
+    "00001": {
       "department": "marketing",
       "name": "Mock Name",
       "office": "Lisbon",
@@ -17,13 +19,9 @@ const mockProfiles = {
   }
 };
 
-// it('has different department', async () => {
-//   useDbData.mockReturnValue(mockProfiles);
-//   render(<App />);
-//   await screen.findByText(/department/);
-// });
 
 test('renders App', async () => {
+  // useDbData.mockReturnValue(mockProfiles);
   render(<App />)
   expect(await screen.findByText(/office/)).toBeVisible()
 })
