@@ -146,8 +146,9 @@ const Homescreen = (props) => {
     }
 
     const [dropdownIsActive, setDropdownIsActive] = useState("false");
-    const activeDropdown = () => {
+    const activeDropdown = (e) => {
       setDropdownIsActive(!dropdownIsActive);
+      console.log('event', e);
     }
     const dropdownRef = useRef(null);
 
@@ -217,12 +218,12 @@ const Homescreen = (props) => {
                       <div className='department-dropdown' ref={dropdownRef}>
                         <p className='dropdown-text' onClick={(e) => activeDropdown(e)}>Select department(s)<i className={dropdownIsActive ? "dropdown-arrow-closed" : "dropdown-arrow-open"}></i></p>
                         <ul className={dropdownIsActive ? "dropdownIsInactive" : "department-dropdown-list"}>
-                          <li className='department-item'><label><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='design' value='design' id='design'/>Design</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='staff' value='staff' id='staff'/>Staff</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='dataScience' value='dataScience' id='dataScience'/>Data Science</label></li>
-                          <li className='department-item'><label><input type='checkbox' name='mobile' value='mobile' id='mobile'/>Mobile</label></li>
+                          <label className='department-label'><li className='department-item'><input type='checkbox' name='marketing' value='marketing' id='marketing'/>Marketing</li></label>
+                          <label className='department-label'><li className='department-item'><input type='checkbox' name='design' value='design' id='design'/>Design</li></label>
+                          <label className='department-label'><li className='department-item'><input type='checkbox' name='softwareEngineering' value='softwareEngineering' id='softwareEngineering'/>Software Engineering</li></label>
+                          <label className='department-label'><li className='department-item'><input type='checkbox' name='staff' value='staff' id='staff'/>Staff</li></label>
+                          <label className='department-label'><li className='department-item'><input type='checkbox' name='dataScience' value='dataScience' id='dataScience'/>Data Science</li></label>
+                          <label className='department-label'><li className='department-item'><input type='checkbox' name='mobile' value='mobile' id='mobile'/>Mobile</li></label>
                         </ul>
                       </div>
                     </form>

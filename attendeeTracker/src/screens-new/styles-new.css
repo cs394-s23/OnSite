@@ -224,7 +224,10 @@ input[type="search"]::placeholder {
     padding-left: 10px;
 }
 
-.department-item:hover {
+.department-label {
+    width: 100%;
+}
+.department-label:hover {
     background-color: #d2d2d2;
 }
 
