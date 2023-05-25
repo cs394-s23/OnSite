@@ -224,7 +224,10 @@ input[type="search"]::placeholder {
     padding-left: 10px;
 }
 
-.department-item:hover {
+.department-label {
+    width: 100%;
+}
+.department-label:hover {
     background-color: #d2d2d2;
 }
 
@@ -264,6 +267,20 @@ input[type="search"]::placeholder {
     margin: 5px;
     color: #23445D;
     font-weight: 300;
+}
+
+.onsiteStatus {
+    font-size: 14px;
+    margin: 5px;
+    color: #40c46c;
+    font-weight: 500;
+}
+
+.remoteStatus {
+    font-size: 14px;
+    margin: 5px;
+    color: #1a9dc9;
+    font-weight: 500;
 }
 
 .emptySearchResult {
