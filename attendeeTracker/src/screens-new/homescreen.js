@@ -18,6 +18,7 @@ const Homescreen = (props) => {
     const [data, setData] = useState(null);
 
     const [profiles] = useState(format_profiles(props.raw_people));
+    const [originalProfiles] = useState(format_profiles(props.raw_people)); // Store the original profiles
     // state for dropdown menus
     const [locationSelect, setLocationSelect] = useState("Select location");
     const handleLocationChange = (event) => {
@@ -122,7 +123,6 @@ const Homescreen = (props) => {
     }
 
     const DepartmentSelect = () => {
-
         // Store whether a department has been selected.
         const marketing = document.getElementById('marketing').checked;
         const design = document.getElementById('design').checked;
@@ -132,13 +132,13 @@ const Homescreen = (props) => {
         const mobile = document.getElementById('mobile').checked;
 
         // Store all checklist bools.
-        const departments = [marketing, design, softwareEngineering, staff, dataScience, mobile];
+        let departments = [marketing, design, softwareEngineering, staff, dataScience, mobile];
+
+        //console.log("d", departments)
 
         // Reload all profiles and reset employees if no department/s are selected.
         if (departments.every(d => d === false)) {
-            setGrid(ProfileGrid());
-            setEmployees(profiles);
-            return;
+          departments = [true, true, true, true, true, true]
         }
 
         // Strings to compare department.
@@ -155,7 +155,7 @@ const Homescreen = (props) => {
                 // Iterate through the list of employees.
                 profiles.forEach((profile, i) => {
                     // Check if the profile is part of the current department.
-                    if (profile.department === depString[j]) {
+                    if (profile.department === depString[j] || (departments.every(d => d === true) && !depString.includes(profile.department)) && !newEmployees.includes(profile)) {
                         newEmployees.push(profile);
                         grid.push(
                             <div key={i} className='userInfo'>
