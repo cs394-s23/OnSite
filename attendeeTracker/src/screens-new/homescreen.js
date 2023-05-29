@@ -53,28 +53,44 @@ const Homescreen = (props) => {
                 console.log("api response: ", response);
                 setData(jsonData);
                 console.log("api data: ", jsonData);
-
+                jsonData.forEach((profile, i) => {
+                    console.log('creating card for user ', i);
+                    employees.push(profile);
+        
+                    grid.push(
+                        <div key={i} className='userInfo'>
+                            {/* <div className='user'></div> */}
+                            <img src={profile.userProfilePictureUrl} alt="profilePic"
+                                 className='userPic'></img>
+                            <h3 className="userName">{profile.fullName}</h3>
+                            <p className="userTitle">{profile.department}</p>
+                        </div>
+                    );
+                });
             } catch (error) {
                 console.error('Error fetching data:', error);
+            } finally {
+                console.log('completed fetching data');
             }
         };
 
-        filtered.forEach((profile, i) => {
-            // console.log(profile.status, modalitySelect);
+//        filtered.forEach((profile, i) => {
+//            // console.log(profile.status, modalitySelect);
 
-            employees.push(profile);
+//            employees.push(profile);
 
-            grid.push(
-                <div key={i} className='userInfo'>
-                    {/* <div className='user'></div> */}
-                    <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))} alt="profilePic"
-                         className='userPic'></img>
-                    <h3 className="userName">{profile.name}</h3>
-                    <p className="userTitle">{profile.role}</p>
-                    <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
-                </div>
-            );
-        });
+//            grid.push(
+//                <div key={i} className='userInfo'>
+//                    {/* <div className='user'></div> */}
+//                    <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))} alt="profilePic"
+//                         className='userPic'></img>
+//                    <h3 className="userName">{profile.name}</h3>
+//                    <p className="userTitle">{profile.role}</p>
+//                    <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
+//                </div>
+//            );
+//        });
+
 
         return grid;
     }
