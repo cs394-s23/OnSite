@@ -5,34 +5,31 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faLocationDot, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/pics/poatek-logo-square.png';
 
-// const format_profiles = raw => {
-//     const result = [];
-//     for (const [id, profile] of Object.entries(raw)) {
-//         profile.id = id;
-//         result.push(profile);
-//     }
-//     return result;
-// }
-
 const Homescreen = (props) => {
+  // all profiles (immutable)
     const [profiles] = useState(props.raw_people);
+    console.log(profiles);
+    // currently displayed profiles
+    const [currentProfiles, setCurrentProfiles] = useState(props.raw_people);
+
+    const RenderProfile = (profile, i) => {
+      return (
+        <div key={i} className='userInfo'>
+          <img src={profile.userProfilePictureUrl} alt="profilePic"
+              className='userPic'></img>
+          <h3 className="userName">{profile.fullName}</h3>
+          <p className="userTitle">{profile.department}</p>
+          {/* <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p> */}
+        </div>
+      );
+    }
 
     const ProfileGrid = () => {
-      const grid = [];
-
-      profiles.forEach((profile, i) => {
-        grid.push(
-          <div key={i} className='userInfo'>
-            <img src={profile.userProfilePictureUrl} alt="profilePic"
-                className='userPic'></img>
-            <h3 className="userName">{profile.fullName}</h3>
-            <p className="userTitle">{profile.department}</p>
-            {/* <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p> */}
-          </div>
-        );
-      });
-
-      return grid;
+      if (currentProfiles.length > 0) {
+        return currentProfiles.map(RenderProfile);
+      } else {
+        return <p className='emptySearchResult'>No employees found</p>
+      }
     }
 
     // Set initial grid to all employees.
@@ -42,34 +39,12 @@ const Homescreen = (props) => {
     const [employees, setEmployees] = useState(profiles);
 
     const NameSearch = () => {
-
-        const grid = [];
-
         // Retrieve search box element.
-        let name = document.getElementById('search');
-
         // Search box is not empty (lowercase & remove spaces).
-        name = name.value.toLowerCase().split(" ").join("");
-
-
-        // Iterate through profiles to find matching name.
-        employees.forEach((profile, i) => {
-            if (profile.name.toLowerCase().split(" ").join("").substring(0, name.length) === name) {
-                grid.push(
-                    <div key={i} className='userInfo'>
-                        {/* <div className='user'></div> */}
-                        <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))} alt="profilePic"
-                             className='userPic'></img>
-                        <h3 className="userName">{profile.name}</h3>
-                        <p className="userTitle">{profile.role}</p>
-                        <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
-                    </div>
-                );
-            }
-        })
-
-        // Update the grid.
-        setGrid(grid);
+        const name = document.getElementById('search').value.toLowerCase();
+        
+        const filtered = profiles.filter(p => p.fullName.toLowerCase().startsWith(name));
+        setCurrentProfiles(filtered);
     }
 
     const SearchEnter = (e) => {
@@ -113,24 +88,25 @@ const Homescreen = (props) => {
                     // Check if the profile is part of the current department.
                     if (profile.department === depString[j] || (departments.every(d => d === true) && !depString.includes(profile.department)) && !newEmployees.includes(profile)) {
                         newEmployees.push(profile);
-                        grid.push(
-                            <div key={i} className='userInfo'>
-                                {/* <div className='user'></div> */}
-                                <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))}
-                                     alt="profilePic" className='userPic'></img>
-                                <h3 className="userName">{profile.name}</h3>
-                                <p className="userTitle">{profile.role}</p>
-                                <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
-                            </div>
-                        );
+                        // grid.push(
+                        //     <div key={i} className='userInfo'>
+                        //         {/* <div className='user'></div> */}
+                        //         <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))}
+                        //              alt="profilePic" className='userPic'></img>
+                        //         <h3 className="userName">{profile.name}</h3>
+                        //         <p className="userTitle">{profile.role}</p>
+                        //         <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
+                        //     </div>
+                        // );
                     }
                 });
             }
         });
 
         // Update the grid and employees.
-        setGrid(grid);
-        setEmployees(newEmployees);
+        // setGrid(grid);
+        setCurrentProfiles(newEmployees);
+        // setEmployees(newEmployees);
     }
 
     const [dropdownIsActive, setDropdownIsActive] = useState("false");
@@ -276,7 +252,7 @@ const Homescreen = (props) => {
                 </div>
                 {/* Grid */}
                 <div className='userBox'>
-                    {grid.length > 0 ? grid : <p className='emptySearchResult'>No employees found</p>}
+                    <ProfileGrid/>
                 </div>
             </div>
         </div>
