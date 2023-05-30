@@ -5,60 +5,34 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faLocationDot, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import logo from '../assets/pics/poatek-logo-square.png';
 
-const format_profiles = raw => {
-    const result = [];
-    for (const [id, profile] of Object.entries(raw)) {
-        profile.id = id;
-        result.push(profile);
-    }
-    return result;
-}
+// const format_profiles = raw => {
+//     const result = [];
+//     for (const [id, profile] of Object.entries(raw)) {
+//         profile.id = id;
+//         result.push(profile);
+//     }
+//     return result;
+// }
 
 const Homescreen = (props) => {
-    const [profiles] = useState(format_profiles(props.raw_people));
-    const [originalProfiles] = useState(format_profiles(props.raw_people)); // Store the original profiles
-    // state for dropdown menus
-    const [locationSelect, setLocationSelect] = useState("Select location");
-    const handleLocationChange = (event) => {
-        setLocationSelect(event.target.value);
-    }
-    const [modalitySelect, setModalitySelect] = useState("Select modality");
-    const handleModalityChange = (event) => {
-        setModalitySelect(event.target.value);
-    }
-
-    console.log('first profile', profiles[0])
+    const [profiles] = useState(props.raw_people);
 
     const ProfileGrid = () => {
-        const grid = [];
-        const employees = [];
+      const grid = [];
 
-        const filtered = profiles.filter(p => {
-            const loc = p.office === locationSelect || locationSelect === "Select location";
-            const mode = p.status === modalitySelect.toLowerCase() || modalitySelect === "Select modality";
+      profiles.forEach((profile, i) => {
+        grid.push(
+          <div key={i} className='userInfo'>
+            <img src={profile.userProfilePictureUrl} alt="profilePic"
+                className='userPic'></img>
+            <h3 className="userName">{profile.fullName}</h3>
+            <p className="userTitle">{profile.department}</p>
+            {/* <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p> */}
+          </div>
+        );
+      });
 
-            return loc && mode;
-        });
-
-       filtered.forEach((profile, i) => {
-           // console.log(profile.status, modalitySelect);
-
-           employees.push(profile);
-
-           grid.push(
-               <div key={i} className='userInfo'>
-                   {/* <div className='user'></div> */}
-                   <img src={profile.userProfilePictureUrl} alt="profilePic"
-                        className='userPic'></img>
-                   <h3 className="userName">{profile.fullName}</h3>
-                   <p className="userTitle">{profile.department}</p>
-                   {/* <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p> */}
-               </div>
-           );
-       });
-
-
-        return grid;
+      return grid;
     }
 
     // Set initial grid to all employees.
@@ -191,8 +165,6 @@ const Homescreen = (props) => {
         searchBar.style.border = 'solid 1px #BDBDBD';
         document.getElementById('employyeeSearchIcon').style.color = "#BDBDBD";
     }
-
-    const [currentLocation, setCurrentLocation] = useState("");
 
     const handleCheckboxClick = (event, checkboxId) => {
       event.stopPropagation();

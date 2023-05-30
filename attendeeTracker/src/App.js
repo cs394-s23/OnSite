@@ -1,5 +1,4 @@
 import './App.css';
-import HomeScreen from './screens/home-screen';
 import Homescreen from './screens-new/homescreen';
 import { useDbData, useApiData } from './utilities/firebase';
 
