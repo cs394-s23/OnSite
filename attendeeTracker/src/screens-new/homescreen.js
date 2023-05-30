@@ -15,8 +15,6 @@ const format_profiles = raw => {
 }
 
 const Homescreen = (props) => {
-    const [data, setData] = useState(null);
-
     const [profiles] = useState(format_profiles(props.raw_people));
     const [originalProfiles] = useState(format_profiles(props.raw_people)); // Store the original profiles
     // state for dropdown menus
@@ -42,54 +40,22 @@ const Homescreen = (props) => {
             return loc && mode;
         });
 
-        useEffect(() => {
-            fetchData();
-        }, []);
+       filtered.forEach((profile, i) => {
+           // console.log(profile.status, modalitySelect);
 
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=1')
-                const jsonData = await response.json();
-                console.log("api response: ", response);
-                setData(jsonData);
-                console.log("api data: ", jsonData);
-                jsonData.forEach((profile, i) => {
-                    console.log('creating card for user ', i);
-                    employees.push(profile);
-        
-                    grid.push(
-                        <div key={i} className='userInfo'>
-                            {/* <div className='user'></div> */}
-                            <img src={profile.userProfilePictureUrl} alt="profilePic"
-                                 className='userPic'></img>
-                            <h3 className="userName">{profile.fullName}</h3>
-                            <p className="userTitle">{profile.department}</p>
-                        </div>
-                    );
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                console.log('completed fetching data');
-            }
-        };
+           employees.push(profile);
 
-//        filtered.forEach((profile, i) => {
-//            // console.log(profile.status, modalitySelect);
-
-//            employees.push(profile);
-
-//            grid.push(
-//                <div key={i} className='userInfo'>
-//                    {/* <div className='user'></div> */}
-//                    <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))} alt="profilePic"
-//                         className='userPic'></img>
-//                    <h3 className="userName">{profile.name}</h3>
-//                    <p className="userTitle">{profile.role}</p>
-//                    <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
-//                </div>
-//            );
-//        });
+           grid.push(
+               <div key={i} className='userInfo'>
+                   {/* <div className='user'></div> */}
+                   <img src={profile.userProfilePictureUrl} alt="profilePic"
+                        className='userPic'></img>
+                   <h3 className="userName">{profile.fullName}</h3>
+                   <p className="userTitle">{profile.department}</p>
+                   {/* <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p> */}
+               </div>
+           );
+       });
 
 
         return grid;

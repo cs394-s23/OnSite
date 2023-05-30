@@ -46,3 +46,28 @@ export const useDbData = (path) => {
 
   return [data, error];
 };
+
+export const useApiData = (locationId) => {
+  const [data, setData] = useState();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=' + locationId)
+      .then((response) => {
+        // if (!response.ok) {
+        //   throw new Error(
+        //     `This is an HTTP error: The status is ${response.status}`
+        //   );
+        // }
+        return response.json();
+      })
+      .then((actualData) => {
+        setData(actualData);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
+
+  return [data, error];
+}
