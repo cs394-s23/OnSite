@@ -5,10 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/pics/poatek-logo-square.png";
 
+const departmentNames = [
+  "SW Development",
+  "Mobile Development",
+  "Marketing",
+  "Human Resources",
+];
+
 const Homescreen = (props) => {
   // all profiles (immutable)
   const [profiles] = useState(props.raw_people);
-  console.log(profiles);
+  console.log("all profiles:", profiles);
   // currently displayed profiles
   const [currentProfiles, setCurrentProfiles] = useState(props.raw_people);
 
@@ -35,20 +42,11 @@ const Homescreen = (props) => {
     }
   };
 
-  // Set initial grid to all employees.
-  const [grid, setGrid] = useState(ProfileGrid());
-
-  // Current profile data.
-  const [employees, setEmployees] = useState(profiles);
-
   const NameSearch = () => {
-    // Retrieve search box element.
-    // Search box is not empty (lowercase & remove spaces).
-    const name = document.getElementById("search").value.toLowerCase();
-
-    const filtered = profiles.filter((p) =>
-      p.fullName.toLowerCase().startsWith(name)
-    );
+    // Retrieve search box element, make lower case and remove spaces
+    const name = document.getElementById("search").value.toLowerCase().replace(" ", "");
+    // filter for profiles with name that starts with search term
+    const filtered = profiles.filter((p) => p.fullName.toLowerCase().startsWith(name));
     setCurrentProfiles(filtered);
   };
 
@@ -59,86 +57,27 @@ const Homescreen = (props) => {
   };
 
   const DepartmentSelect = () => {
-    // Store whether a department has been selected.
-    const marketing = document.getElementById("marketing").checked;
-    const design = document.getElementById("design").checked;
-    const softwareEngineering = document.getElementById(
-      "softwareEngineering"
-    ).checked;
-    const staff = document.getElementById("staff").checked;
-    const dataScience = document.getElementById("dataScience").checked;
-    const mobile = document.getElementById("mobile").checked;
-
-    // Store all checklist bools.
-    let departments = [
-      marketing,
-      design,
-      softwareEngineering,
-      staff,
-      dataScience,
-      mobile,
-    ];
-
-    //console.log("d", departments)
-
-    // Reload all profiles and reset employees if no department/s are selected.
-    if (departments.every((d) => d === false)) {
-      departments = [true, true, true, true, true, true];
-    }
-
-    // Strings to compare department.
-    const depString = [
-      "marketing",
-      "design",
-      "softwareEngineering",
-      "staff",
-      "dataScience",
-      "mobile",
-    ];
-
-    const grid = [];
-
-    const newEmployees = [];
-
-    // Iterate through the departments.
-    departments.forEach((department, j) => {
-      // Department is selected.
-      if (department) {
-        // Iterate through the list of employees.
-        profiles.forEach((profile, i) => {
-          // Check if the profile is part of the current department.
-          if (
-            profile.department === depString[j] ||
-            (departments.every((d) => d === true) &&
-              !depString.includes(profile.department) &&
-              !newEmployees.includes(profile))
-          ) {
-            newEmployees.push(profile);
-            // grid.push(
-            //     <div key={i} className='userInfo'>
-            //         {/* <div className='user'></div> */}
-            //         <img src={'https://picsum.photos/100?random=' + String(parseInt(profile.id))}
-            //              alt="profilePic" className='userPic'></img>
-            //         <h3 className="userName">{profile.name}</h3>
-            //         <p className="userTitle">{profile.role}</p>
-            //         <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p>
-            //     </div>
-            // );
-          }
-        });
-      }
+    // array of which department checkboxes are selected
+    const selected = departmentNames.map(d => {
+      return document.getElementById(d).checked;
     });
 
-    // Update the grid and employees.
-    // setGrid(grid);
-    setCurrentProfiles(newEmployees);
-    // setEmployees(newEmployees);
+    // if no departments are selected, display everything
+    if (selected.every(d => !d)) {
+      selected.fill(true);
+    }
+
+    const filtered = [];
+    departmentNames.filter((dep, i) => selected[i]).forEach((dep, i) => {
+      // profiles matching given department
+      const matching = profiles.filter(p => p.department === dep);
+      filtered.push(...matching);
+    });
+
+    setCurrentProfiles(filtered);
   };
 
   const [dropdownIsActive, setDropdownIsActive] = useState("false");
-  const activeDropdown = () => {
-    setDropdownIsActive(!dropdownIsActive);
-  };
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -211,11 +150,7 @@ const Homescreen = (props) => {
           </div>
           <div className="whosInHeading">
             <h2 className="whosIn">Who's in the office today</h2>
-            {grid.length === 1 ? (
-              <p>| {grid.length} person</p>
-            ) : (
-              <p>| {grid.length} people</p>
-            )}
+            <p>| {currentProfiles.length} {currentProfiles.length === 1 ? "person" : "people"}</p>
           </div>
           <div className="headerFilters">
             <form
@@ -259,122 +194,20 @@ const Homescreen = (props) => {
                       : "department-dropdown-list"
                   }
                 >
-                  <li
-                    className="department-item"
-                    onClick={(e) => handleCheckboxClick(e, "marketing")}
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="marketing"
-                        value="marketing"
-                        id="marketing"
-                      />
-                      <span
-                        onClick={(e) =>
-                          handleDepartmentTextClick(e, "marketing")
-                        }
-                      >
-                        Marketing
+                  {departmentNames.map((dep) => {
+                    return (
+                    <li 
+                      className="department-item"
+                      onClick={(e) => handleCheckboxClick(e, dep)}
+                    >
+                      <label>
+                      <input type="checkbox" name={dep} value={dep} id={dep}/>
+                      <span onClick={(e) => handleDepartmentTextClick(e, {dep})}>
+                        {dep}
                       </span>
                     </label>
-                  </li>
-                  <li
-                    className="department-item"
-                    onClick={(e) => handleCheckboxClick(e, "design")}
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="design"
-                        value="design"
-                        id="design"
-                      />
-                      <span
-                        onClick={(e) => handleDepartmentTextClick(e, "design")}
-                      >
-                        Design
-                      </span>
-                    </label>
-                  </li>
-                  <li
-                    className="department-item"
-                    onClick={(e) =>
-                      handleCheckboxClick(e, "softwareEngineering")
-                    }
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="softwareEngineering"
-                        value="softwareEngineering"
-                        id="softwareEngineering"
-                      />
-                      <span
-                        onClick={(e) =>
-                          handleDepartmentTextClick(e, "softwareEngineering")
-                        }
-                      >
-                        Software Engineering
-                      </span>
-                    </label>
-                  </li>
-                  <li
-                    className="department-item"
-                    onClick={(e) => handleCheckboxClick(e, "staff")}
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="staff"
-                        value="staff"
-                        id="staff"
-                      />
-                      <span
-                        onClick={(e) => handleDepartmentTextClick(e, "staff")}
-                      >
-                        Staff
-                      </span>
-                    </label>
-                  </li>
-                  <li
-                    className="department-item"
-                    onClick={(e) => handleCheckboxClick(e, "dataScience")}
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="dataScience"
-                        value="dataScience"
-                        id="dataScience"
-                      />
-                      <span
-                        onClick={(e) =>
-                          handleDepartmentTextClick(e, "dataScience")
-                        }
-                      >
-                        Data Science
-                      </span>
-                    </label>
-                  </li>
-                  <li
-                    className="department-item"
-                    onClick={(e) => handleCheckboxClick(e, "mobile")}
-                  >
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="mobile"
-                        value="mobile"
-                        id="mobile"
-                      />
-                      <span
-                        onClick={(e) => handleDepartmentTextClick(e, "mobile")}
-                      >
-                        Mobile
-                      </span>
-                    </label>
-                  </li>
+                    </li>)
+                  })}
                 </ul>
               </div>
             </form>
