@@ -117,7 +117,7 @@ const Homescreen = (props) => {
   };
 
   const handleDepartmentTextClick = (event, checkboxId) => {
-    const checkbox = document.getElementById(checkboxId);
+    const checkbox = document.getElementById(checkboxId.dep);
     checkbox.checked = !checkbox.checked; // Toggle the checked state of the checkbox
     DepartmentSelect();
   };
