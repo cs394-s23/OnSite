@@ -1,6 +1,5 @@
 import './App.css';
 import Homescreen from './screens-new/homescreen';
-import { currentOfficeId } from './screens-new/homescreen';
 import { useDbData, useApiData } from './utilities/firebase';
 
 function App() {

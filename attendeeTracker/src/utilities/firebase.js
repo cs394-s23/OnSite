@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 // import { getAuth, GoogleAuthProvider, connectAuthEmulator } from "@firebase/auth";
 import { getDatabase, onValue, ref, set } from "firebase/database";
-import { currentOfficeId } from "../screens-new/homescreen";
 
 
 const firebaseConfig = {
@@ -69,7 +68,7 @@ export const useApiData = (locationId) => {
       .catch((err) => {
         setError(err);
       });
-  }, [currentOfficeId]);
+  }, []);
 
   return [data, error];
 }

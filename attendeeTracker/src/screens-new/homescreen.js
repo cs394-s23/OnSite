@@ -10,21 +10,27 @@ const departmentNames = [
   "Mobile Development",
   "Marketing",
   "Human Resources",
+  "Security",
+  "Support"
 ];
 
-const officeLocations = [
-  "Porto Alegre -BR",
-  "São Paulo -BR"
+const officeNames = [
+  "POA",
+  "SP",
+  "MIA",
+  "LIS"
 ];
 
-export var currentOfficeId = 1;
+// export var currentOfficeId = 1;
 
 const Homescreen = (props) => {
   // all profiles (immutable)
   const [profiles] = useState(props.raw_people);
-  //console.log("all profiles:", profiles);
   // currently displayed profiles
-  const [currentProfiles, setCurrentProfiles] = useState(props.raw_people[currentOfficeId]);
+  const [officeId, setOfficeId] = useState(0);
+  const [currentProfiles, setCurrentProfiles] = useState(props.raw_people[officeId]);
+
+  console.log("all profiles:", profiles);
 
   const RenderProfile = (profile, i) => {
     return (
@@ -56,10 +62,11 @@ const Homescreen = (props) => {
   };
 
   const SearchAll = () => {
+    
     // Retrieve search box element, make lower case and remove spaces
     const name = document.getElementById("search").value.toLowerCase().replace(" ", "");
     // filter for profiles with name that starts with search term
-    const filtered1 = profiles.filter((p) => p.fullName.toLowerCase().startsWith(name));
+    const filtered1 = profiles[officeId].filter((p) => p.fullName.toLowerCase().startsWith(name));
     setCurrentProfiles(filtered1);
 
     // array of which department checkboxes are selected
@@ -76,7 +83,7 @@ const Homescreen = (props) => {
 
     departmentNames.filter((dep, i) => selected[i]).forEach((dep, i) => {
       // profiles matching given department
-      const matching = profiles.filter(p => p.department === dep);
+      const matching = profiles[officeId].filter(p => p.department === dep);
       filtered2.push(...matching);
     });
 
@@ -84,35 +91,6 @@ const Homescreen = (props) => {
 
     setCurrentProfiles(filtered);
   }
-
-  const NameSearch = () => {
-    // Retrieve search box element, make lower case and remove spaces
-    const name = document.getElementById("search").value.toLowerCase().replace(" ", "");
-    // filter for profiles with name that starts with search term
-    const filtered = profiles.filter((p) => p.fullName.toLowerCase().startsWith(name));
-    setCurrentProfiles(filtered);
-  };
-
-  const DepartmentSelect = () => {
-    // array of which department checkboxes are selected
-    const selected = departmentNames.map(d => {
-      return document.getElementById(d).checked;
-    });
-
-    // if no departments are selected, display everything
-    if (selected.every(d => !d)) {
-      selected.fill(true);
-    }
-
-    const filtered = [];
-    departmentNames.filter((dep, i) => selected[i]).forEach((dep, i) => {
-      // profiles matching given department
-      const matching = profiles.filter(p => p.department === dep);
-      filtered.push(...matching);
-    });
-
-    setCurrentProfiles(filtered);
-  };
 
   const [dropdownIsActive, setDropdownIsActive] = useState("false");
   const dropdownRef = useRef(null);
@@ -159,12 +137,6 @@ const Homescreen = (props) => {
     SearchAll();
   };
 
-  const locationNumber = (event) => {
-    currentOfficeId = +event.currentTarget.id.substring(0, 1);
-    //console.log(typeof currentOfficeId);
-    //return currentOfficeId;
-  }
-
   return (
     <div className="fullLayout">
       {/* Nav */}
@@ -173,22 +145,21 @@ const Homescreen = (props) => {
           <img className="logoImg" src={logo} alt="logo"></img>
         </h1>
         <div className="navItems">
-          <div id="0-poa-office" className="navItem" onClick={(event) => locationNumber(event)}>
-            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
-            <p>POA</p>
-          </div>
-          <div id="1-sp-office" className="navItem" onClick={(event) => locationNumber(event)}>
-            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
-            <p>SP</p>
-          </div>
-          <div id="2-miami-office" className="navItem" onClick={(event) => locationNumber(event)}>
-            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
-            <p>POA</p>
-          </div>
-          <div id="3-lisbon-office" className="navItem" onClick={(event) => locationNumber(event)}>
-            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
-            <p>SP</p>
-          </div>
+          {officeNames.map((name, i) => {
+            return (
+              <div id="office-select" key={i} className="navItem" onClick={() => {
+                setOfficeId(i);
+                setCurrentProfiles(profiles[i]);
+                document.getElementById("search").value = "";
+                departmentNames.forEach(d => {
+                  document.getElementById(d).checked = false;
+                })
+              }}>
+                <FontAwesomeIcon icon={faLocationDot} size="3x"/>
+                <p>{name}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
 
