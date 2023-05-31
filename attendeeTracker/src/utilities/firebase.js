@@ -61,7 +61,7 @@ export const useApiData = (locationId) => {
       .catch((err) => {
         setError(err);
       });
-  }, []);
+  }, [locationId]);
 
   return [data, error];
 }
