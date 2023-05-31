@@ -14,13 +14,9 @@ const firebaseConfig = {
   appId: "1:957126938870:web:f0b21e3e40d5647acf9cd7"
 };
 
-
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const database = getDatabase(firebase);
-
-// export const auth = getAuth(firebase);
-// export const provider = new GoogleAuthProvider();
 
 export const setData = (path, value) => (
   set(ref(database, path), value)
@@ -52,14 +48,11 @@ export const useApiData = (locationId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=' + locationId)
+    // use full url in deployment
+    // const url = 'https://poatek-hub-api.azurewebsites.net/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=' + locationId;
+    const url = '/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=' + locationId;
+    fetch(url)
       .then((response) => {
-        // if (!response.ok) {
-        //   throw new Error(
-        //     `This is an HTTP error: The status is ${response.status}`
-        //   );
-        // }
-        //https://poatek-hub-api.azurewebsites.net
         return response.json();
       })
       .then((actualData) => {

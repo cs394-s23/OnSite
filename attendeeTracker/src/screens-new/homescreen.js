@@ -21,7 +21,12 @@ const officeNames = [
   "LIS"
 ];
 
-// export var currentOfficeId = 1;
+const officeFullnames = [
+  "Porto Alegre (BR)",
+  "Sao Paulo (BR)",
+  "Miami (US)",
+  "Lisboa (PT)"
+];
 
 const Homescreen = (props) => {
   // all profiles (immutable)
@@ -98,7 +103,6 @@ const Homescreen = (props) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        //console.log('Clicked outside');
         setDropdownIsActive(true);
       }
     };
@@ -148,8 +152,10 @@ const Homescreen = (props) => {
           {officeNames.map((name, i) => {
             return (
               <div id="office-select" key={i} className="navItem" onClick={() => {
+                // change office id and displayed profiles
                 setOfficeId(i);
                 setCurrentProfiles(profiles[i]);
+                // reset existing search
                 document.getElementById("search").value = "";
                 departmentNames.forEach(d => {
                   document.getElementById(d).checked = false;
@@ -172,7 +178,7 @@ const Homescreen = (props) => {
           </div>
           <div className="whosInHeading">
             <h2 className="whosIn">Who's in the office today</h2>
-            <p>| {currentProfiles.length} {currentProfiles.length === 1 ? "person" : "people"}</p>
+            <p>{officeFullnames[officeId]} | {currentProfiles.length} {currentProfiles.length === 1 ? "person" : "people"}</p>
           </div>
           <div className="headerFilters">
             <form
