@@ -24,7 +24,7 @@ const Homescreen = (props) => {
   const [profiles] = useState(props.raw_people);
   //console.log("all profiles:", profiles);
   // currently displayed profiles
-  const [currentProfiles, setCurrentProfiles] = useState(props.raw_people);
+  const [currentProfiles, setCurrentProfiles] = useState(props.raw_people[currentOfficeId]);
 
   const RenderProfile = (profile, i) => {
     return (
@@ -160,9 +160,9 @@ const Homescreen = (props) => {
   };
 
   const locationNumber = (event) => {
-    currentOfficeId = event.currentTarget.id.substring(0, 1);
-    console.log(currentOfficeId);
-    return currentOfficeId;
+    currentOfficeId = +event.currentTarget.id.substring(0, 1);
+    //console.log(typeof currentOfficeId);
+    //return currentOfficeId;
   }
 
   return (
@@ -173,11 +173,19 @@ const Homescreen = (props) => {
           <img className="logoImg" src={logo} alt="logo"></img>
         </h1>
         <div className="navItems">
-          <div id="1-poa-office" className="navItem" onClick={(event) => locationNumber(event)}>
+          <div id="0-poa-office" className="navItem" onClick={(event) => locationNumber(event)}>
             <FontAwesomeIcon icon={faLocationDot} size="3x"/>
             <p>POA</p>
           </div>
-          <div id="2-sp-office" className="navItem" onClick={(event) => locationNumber(event)}>
+          <div id="1-sp-office" className="navItem" onClick={(event) => locationNumber(event)}>
+            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
+            <p>SP</p>
+          </div>
+          <div id="2-miami-office" className="navItem" onClick={(event) => locationNumber(event)}>
+            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
+            <p>POA</p>
+          </div>
+          <div id="3-lisbon-office" className="navItem" onClick={(event) => locationNumber(event)}>
             <FontAwesomeIcon icon={faLocationDot} size="3x"/>
             <p>SP</p>
           </div>
