@@ -12,6 +12,13 @@ const departmentNames = [
   "Human Resources",
 ];
 
+const officeLocations = [
+  "Porto Alegre -BR",
+  "São Paulo -BR"
+];
+
+export var currentOfficeId = 1;
+
 const Homescreen = (props) => {
   // all profiles (immutable)
   const [profiles] = useState(props.raw_people);
@@ -152,6 +159,20 @@ const Homescreen = (props) => {
     SearchAll();
   };
 
+  const filterPOA = () => {
+    console.log("clicked")
+  }
+
+  const filterSP = () => {
+    console.log("clicked")
+  }
+
+  const locationNumber = (event) => {
+    currentOfficeId = event.currentTarget.id.substring(0, 1);
+    console.log(currentOfficeId);
+    return currentOfficeId;
+  }
+
   return (
     <div className="fullLayout">
       {/* Nav */}
@@ -160,12 +181,12 @@ const Homescreen = (props) => {
           <img className="logoImg" src={logo} alt="logo"></img>
         </h1>
         <div className="navItems">
-          <div id="poa-office" className="navItem">
-            <FontAwesomeIcon icon={faLocationDot} size="3x" />
+          <div id="1-poa-office" className="navItem" onClick={(event) => locationNumber(event)}>
+            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
             <p>POA</p>
           </div>
-          <div id="sp-office" className="navItem">
-            <FontAwesomeIcon icon={faLocationDot} size="3x" />
+          <div id="2-sp-office" className="navItem" onClick={(event) => locationNumber(event)}>
+            <FontAwesomeIcon icon={faLocationDot} size="3x"/>
             <p>SP</p>
           </div>
         </div>
@@ -253,3 +274,4 @@ const Homescreen = (props) => {
 };
 
 export default Homescreen;
+

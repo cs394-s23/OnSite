@@ -1,11 +1,12 @@
 import './App.css';
 import Homescreen from './screens-new/homescreen';
+import { currentOfficeId } from './screens-new/homescreen';
 import { useDbData, useApiData } from './utilities/firebase';
 
 function App() {
 
   // const [people, error] = useDbData('/people');
-  const [people, error] = useApiData(1);
+  const [people, error] = useApiData(currentOfficeId);
 
   if (error) return <h1>{error}</h1>;
   // while waiting for data from firebase

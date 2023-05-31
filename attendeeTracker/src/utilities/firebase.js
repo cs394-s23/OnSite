@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 // import { getAuth, GoogleAuthProvider, connectAuthEmulator } from "@firebase/auth";
 import { getDatabase, onValue, ref, set } from "firebase/database";
+import { currentOfficeId } from "../screens-new/homescreen";
 
 
 const firebaseConfig = {
@@ -59,6 +60,7 @@ export const useApiData = (locationId) => {
         //     `This is an HTTP error: The status is ${response.status}`
         //   );
         // }
+        console.log("requerying API");
         return response.json();
       })
       .then((actualData) => {
@@ -67,7 +69,7 @@ export const useApiData = (locationId) => {
       .catch((err) => {
         setError(err);
       });
-  }, []);
+  }, [currentOfficeId]);
 
   return [data, error];
 }
