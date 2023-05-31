@@ -15,7 +15,7 @@ const departmentNames = [
 const Homescreen = (props) => {
   // all profiles (immutable)
   const [profiles] = useState(props.raw_people);
-  console.log("all profiles:", profiles);
+  //console.log("all profiles:", profiles);
   // currently displayed profiles
   const [currentProfiles, setCurrentProfiles] = useState(props.raw_people);
 
@@ -42,18 +42,48 @@ const Homescreen = (props) => {
     }
   };
 
+  const SearchEnter = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+
+  const SearchAll = () => {
+    // Retrieve search box element, make lower case and remove spaces
+    const name = document.getElementById("search").value.toLowerCase().replace(" ", "");
+    // filter for profiles with name that starts with search term
+    const filtered1 = profiles.filter((p) => p.fullName.toLowerCase().startsWith(name));
+    setCurrentProfiles(filtered1);
+
+    // array of which department checkboxes are selected
+    const selected = departmentNames.map(d => {
+      return document.getElementById(d).checked;
+    });
+
+    // if no departments are selected, display everything
+    if (selected.every(d => !d)) {
+      selected.fill(true);
+    }
+
+    const filtered2 = [];
+
+    departmentNames.filter((dep, i) => selected[i]).forEach((dep, i) => {
+      // profiles matching given department
+      const matching = profiles.filter(p => p.department === dep);
+      filtered2.push(...matching);
+    });
+
+    const filtered = filtered1.filter(value => filtered2.includes(value));
+
+    setCurrentProfiles(filtered);
+  }
+
   const NameSearch = () => {
     // Retrieve search box element, make lower case and remove spaces
     const name = document.getElementById("search").value.toLowerCase().replace(" ", "");
     // filter for profiles with name that starts with search term
     const filtered = profiles.filter((p) => p.fullName.toLowerCase().startsWith(name));
     setCurrentProfiles(filtered);
-  };
-
-  const SearchEnter = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
   };
 
   const DepartmentSelect = () => {
@@ -113,13 +143,13 @@ const Homescreen = (props) => {
     if (event.target.tagName.toLowerCase() !== "input") {
       checkbox.checked = !checkbox.checked; // Toggle the checked state of the checkbox
     }
-    DepartmentSelect();
+    SearchAll();
   };
 
   const handleDepartmentTextClick = (event, checkboxId) => {
     const checkbox = document.getElementById(checkboxId.dep);
     checkbox.checked = !checkbox.checked; // Toggle the checked state of the checkbox
-    DepartmentSelect();
+    SearchAll();
   };
 
   return (
@@ -167,11 +197,11 @@ const Homescreen = (props) => {
                 placeholder="Looking for someone?"
                 type="search"
                 id="search"
-                onChange={NameSearch}
+                onChange={SearchAll}
                 onKeyDown={SearchEnter}
               ></input>
             </form>
-            <form onChange={DepartmentSelect}>
+            <form onChange={SearchAll}>
               <div
                 className="department-dropdown"
                 ref={dropdownRef}
