@@ -159,14 +159,6 @@ const Homescreen = (props) => {
     SearchAll();
   };
 
-  const filterPOA = () => {
-    console.log("clicked")
-  }
-
-  const filterSP = () => {
-    console.log("clicked")
-  }
-
   const locationNumber = (event) => {
     currentOfficeId = event.currentTarget.id.substring(0, 1);
     console.log(currentOfficeId);

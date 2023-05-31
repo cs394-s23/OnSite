@@ -53,14 +53,13 @@ export const useApiData = (locationId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=' + locationId)
+    fetch('https://poatek-hub-api.azurewebsites.net/api/reports/office/collaboratorsByOffice?Date=2023-05-17&LocationId=' + locationId)
       .then((response) => {
         // if (!response.ok) {
         //   throw new Error(
         //     `This is an HTTP error: The status is ${response.status}`
         //   );
         // }
-        console.log("requerying API");
         return response.json();
       })
       .then((actualData) => {
