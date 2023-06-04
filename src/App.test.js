@@ -16,14 +16,10 @@ const mockValue = [mockProfiles, null];
 
 
 test('renders App', async () => {
-
-  // utils.useApiData.mockResolvedValue(mockValue);
   useApiData.mockReturnValue(mockValue);
-  
   render(<App />)
   expect(await screen.findByText(/office/)).toBeVisible()
 })
-
 
 test('mock user on dashboard', async () => {
   useApiData.mockReturnValue(mockValue);
