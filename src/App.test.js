@@ -1,36 +1,34 @@
-
-
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import { useDbData } from './utilities/firebase';
+import { useApiData } from './utilities/firebase';
 
-
+// const utils = require('./utilities/firebase');
 jest.mock('./utilities/firebase');
 
-const mockProfiles = {
-  "people": {
-    "00001": {
-      "department": "marketing",
-      "name": "Mock Name",
-      "office": "Lisbon",
-      "role": "Manager",
-      "status": "remote"
-    }
+const mockProfiles = [
+  {
+    "fullName": "Mock",
+    "department": "Marketing"
   }
-};
+];
+
+const mockValue = [mockProfiles, null];
 
 
 test('renders App', async () => {
-  // useDbData.mockReturnValue(mockProfiles);
+
+  // utils.useApiData.mockResolvedValue(mockValue);
+  useApiData.mockReturnValue(mockValue);
+  
   render(<App />)
   expect(await screen.findByText(/office/)).toBeVisible()
 })
 
 
 test('mock user on dashboard', async () => {
-  useDbData.mockReturnValue(mockProfiles);
+  useApiData.mockReturnValue(mockValue);
   render(
     <App />
   );
-  expect(await screen.findByText('Mock Name', {}, { timeout: 3000})).toBeVisible();
+  expect(await screen.findByText('Mock')).toBeVisible();
 })

@@ -1,6 +1,7 @@
 import './App.css';
 import Homescreen from './screens/homescreen';
-import { useDbData, useApiData } from './utilities/firebase';
+import { useApiData } from './utilities/firebase';
+// import { useDbData } from './utilities/firebase';
 
 function App() {
 
