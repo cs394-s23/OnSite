@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import { useApiData } from './utilities/firebase';
 
-// const utils = require('./utilities/firebase');
 jest.mock('./utilities/firebase');
 
 const mockProfiles = [

@@ -47,7 +47,6 @@ const Homescreen = (props) => {
         ></img>
         <h3 className="userName">{profile.fullName}</h3>
         <p className="userTitle">{profile.department}</p>
-        {/* <p className={profile.status === 'remote' ? 'remoteStatus' : 'onsiteStatus'}>{profile.status.toUpperCase()}</p> */}
       </div>
     );
   };
