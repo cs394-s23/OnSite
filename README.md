@@ -34,10 +34,11 @@ OnSite is an app created for Poatek, an IT consulting firm based in Brasil that 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+* React
+  [![React logo](src/assets/pics/react.png)](https://client-project-5de94.web.app/)
 
-* [![React](React.js)](https://reactjs.org/)
 
+[//]: # ([![React]&#40;src/assets/pics/react.png&#41;]&#40;https://reactjs.org/&#41;)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -66,9 +67,22 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+3. Enter your API in `config.js`
    ```js
    const API_KEY = 'ENTER YOUR API';
    ```
+   
+4. Run the app
+   ```sh
+   npm start
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+### Testing
+All the testing files are under src with a .test.js postfix. You can 
+run the test by running the following command in the terminal:
+```sh
+npm test
+```
