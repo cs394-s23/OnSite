@@ -44,12 +44,11 @@ OnSite is an app created for Poatek, an IT consulting firm based in Brasil that 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Let's set up OnSite. To get a local copy up and running follow the steps below.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+We use Node Package Manager to install packages and dependencies. To install the latest versions of the packages, run the command below.
 * npm
   ```sh
   npm install npm@latest -g
@@ -57,7 +56,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Run the following commands to install and set up the app._
 
 1. Clone the repo
    ```sh
@@ -67,12 +66,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    npm install
    ```
-3. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-   
-4. Run the app
+3. Run the app
    ```sh
    npm start
    ```
